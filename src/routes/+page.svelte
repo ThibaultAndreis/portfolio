@@ -21,7 +21,7 @@
 					<h2 class="relative z-10 inline bg-slate-100 dark:bg-slate-700">{section.title}</h2>
 					<div class="bg-slate-100 p-2 dark:bg-slate-700" style="rotate: {-section.angleB}deg">
 						<p class=" whitespace-pre-line" style="rotate: {section.angleB}deg">
-							{section.text}
+							{@html section.text}
 						</p>
 					</div>
 				</div>
