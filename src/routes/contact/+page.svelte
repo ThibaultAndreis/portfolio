@@ -31,6 +31,10 @@
 	});
 </script>
 
+<svelte:head>
+	<meta name="robots" content="noindex" />
+</svelte:head>
+
 <div class="p-4">
 	<div class=" mb-4">
 		<h1>{$t('common.ContactMe')}</h1>
