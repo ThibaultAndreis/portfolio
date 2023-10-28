@@ -1,2 +1,4 @@
-/settings
-/contact
+User-agent: *
+Disallow: /contact
+Disallow: /settings
+
