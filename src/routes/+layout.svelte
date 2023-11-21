@@ -45,7 +45,7 @@
 
 <div class={theme}>
 	<div
-		class="h-screen w-screen overflow-auto bg-orange-100 text-zinc-700 dark:bg-slate-900 dark:text-zinc-200"
+		class="h-screen w-full overflow-auto bg-orange-100 text-zinc-700 dark:bg-slate-900 dark:text-zinc-200"
 	>
 		<div class="relative">
 			<Header />
