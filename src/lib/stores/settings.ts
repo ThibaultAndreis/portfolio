@@ -1,13 +1,13 @@
-import { browser } from '$app/environment';
+import { browser } from "$app/environment";
 
-import { writable } from 'svelte/store';
+import { writable } from "svelte/store";
 
 const initialValue = browser
 	? localStorage.theme
 		? localStorage.theme
-		: window.matchMedia('(prefers-color-scheme: dark)').matches
-		? 'dark'
-		: 'light'
+		: window.matchMedia("(prefers-color-scheme: dark)").matches
+		  ? "dark"
+		  : "light"
 	: null;
 
 export const themeStore = writable<string>(initialValue);
