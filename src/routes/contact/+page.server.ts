@@ -1,17 +1,13 @@
 import { API__TOKEN, API_URL } from '$env/static/private';
+
 import { fail } from '@sveltejs/kit';
 import { superValidate } from 'sveltekit-superforms/server';
-import { z } from 'zod';
-
-const contactForm = z.object({
-	email: z.string().email(),
-	subject: z.string().min(5),
-	message: z.string().min(10)
-});
+import { valibot } from 'sveltekit-superforms/adapters';
+import { contactForm } from './formSchema';
 
 export const load = async () => {
 	// Server API:
-	const form = await superValidate(contactForm);
+	const form = await superValidate(valibot(contactForm));
 
 	// Always return { form } in load and form actions.
 	return { form };
@@ -19,7 +15,7 @@ export const load = async () => {
 
 export const actions = {
 	default: async ({ request }) => {
-		const form = await superValidate(request, contactForm);
+		const form = await superValidate(request,valibot( contactForm));
 
 		if (!form.valid) {
 			return fail(400, { form });

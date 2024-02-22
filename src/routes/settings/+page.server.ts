@@ -20,6 +20,7 @@ export const actions = {
 		const data = await request.formData();
 		const lang = data.get('lang');
 		if (!lang) return;
+
 		cookies.set('lang', lang.toString(), {
 			path: '/',
 			httpOnly: true,

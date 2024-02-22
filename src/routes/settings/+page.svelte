@@ -6,14 +6,14 @@
 
 	import { t, locale } from '$lib/i18n/translations';
 
-	const enhanceForm = (theme) => () => {
+	export let data;
+	const enhanceForm = (theme :string) => () => {
 		themeStore.set(theme);
 		return async ({ result }) => {
 			await invalidateAll();
 			await applyAction(result);
 		};
 	};
-	export let data;
 	let theme = 'dark';
 	if (data.theme) {
 		theme = data.theme;

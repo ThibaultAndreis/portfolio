@@ -1,19 +1,17 @@
 <script lang="ts">
 	import { t } from '$lib/i18n/translations';
-	import { superForm } from 'sveltekit-superforms/client';
-	import { z } from 'zod';
+	import { valibotClient } from 'sveltekit-superforms/adapters';
+	import { superForm } from 'sveltekit-superforms';
+	import { contactForm } from './formSchema';
 
-	const contactForm = z.object({
-		email: z.string().email(),
-		subject: z.string().min(5),
-		message: z.string().min(10)
-	});
+
 
 	let message = '';
 	let returnType = 0;
 
 	export let data;
 	const { form, errors, constraints, enhance } = superForm(data.form, {
+		validators: valibotClient(contactForm),
 		onSubmit: () => (message = ''),
 		onResult: ({ result }) => {
 			if (result.type === 'success') {
@@ -24,10 +22,8 @@
 				returnType = 0;
 			}
 		},
-		validators: contactForm,
 		resetForm: true,
 		onError: 'apply',
-		taintedMessage: null
 	});
 </script>
 
