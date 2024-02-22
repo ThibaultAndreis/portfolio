@@ -55,11 +55,13 @@ sw.addEventListener('fetch', (event) => {
 			const response = await fetch(event.request);
 
 			if (response.status === 200) {
-				cache.put(event.request, response.clone());
+				cache.put(event.request, response.clone()).then();
 				return response;
 			}
 
-			throw new Error('Resource not found');
+			const cacheResponse = await cache.match(event.request);
+			return cacheResponse ?? new Response('Not found!');
+
 		} catch {
 			const cacheResponse = await cache.match(event.request);
 			return cacheResponse ?? new Response('Not found!');
