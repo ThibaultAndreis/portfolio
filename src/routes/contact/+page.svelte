@@ -6,10 +6,10 @@
 
 
 
-	let message = '';
-	let returnType = 0;
+	let message = $state('');
+	let returnType = $state(0);
 
-	export let data;
+	let { data } = $props();
 	const { form, errors, constraints, enhance } = superForm(data.form, {
 		validators: valibotClient(contactForm),
 		onSubmit: () => (message = ''),
@@ -93,7 +93,7 @@
 				rows="5"
 				cols="47"
 				placeholder="He cares more about his men than the Spice. I have to admit, against my better judgement, I like this Duke."
-			/>
+			></textarea>
 			<label for="message" class="flex">{$t('contact.Message')}</label>
 		</div>
 

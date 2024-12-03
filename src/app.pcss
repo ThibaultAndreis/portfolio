@@ -1,11 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-* {
-	font-family: sans-serif;
-	letter-spacing: 0.08em;
+@layer base {
+	@font-face {
+		font-family: "quicksand-fallback";
+		size-adjust: 104.34%;
+		ascent-override: 97%;
+		src: local("Arial");
+	}
+	@font-face {
+		font-family: "italiana-fallback";
+		size-adjust: 104.42999999999994%;
+		ascent-override: 90%;
+		src: local("Times New Roman");
+	}
+	@font-face {
+		font-family: 'italiana';
+		font-display: swap;
+		src: url(./lib/fonts/Italiana-Regular.ttf) format('truetype');
+	}
+	@font-face {
+		font-family: 'quicksand';
+		font-display: swap;
+		src: url(./lib/fonts/Quicksand-VariableFont_wght.ttf) format('truetype');
+	}
 }
+
 
 body {
 	margin: 0;
@@ -15,11 +35,11 @@ body {
 }
 
 h1 {
-	@apply text-5xl font-bold;
+	@apply text-5xl font-bold font-serif;
 }
 
 h2 {
-	@apply text-xl font-bold;
+	@apply text-xl font-bold font-serif;
 }
 
 a {
@@ -36,3 +56,9 @@ a {
 		@apply underline;
 	}
 }
+
+
+
+
+
+

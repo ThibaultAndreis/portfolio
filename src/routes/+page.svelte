@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { t } from '$lib/i18n/translations';
 
-	export let data;
+	let { data } = $props();
 </script>
 
 <div class="p-2">

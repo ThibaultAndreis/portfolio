@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { browser } from '$app/environment';
 	import { PUBLIC_DEFAULT_URL } from '$env/static/public';
 	import Header from '$lib/component/Header.svelte';
@@ -6,8 +8,8 @@
 	import '../app.pcss';
 	import { t } from '$lib/i18n/translations';
 
-	export let data;
-	let theme = 'dark';
+	let { data, children } = $props();
+	let theme = $state('dark');
 	if (data.theme) {
 		theme = data.theme;
 		if (browser) {
@@ -15,11 +17,13 @@
 		}
 	}
 
-	$: if (browser) {
-		themeStore.subscribe((val) => {
-			theme = val;
-		});
-	}
+	run(() => {
+		if (browser) {
+			themeStore.subscribe((val) => {
+				theme = val;
+			});
+		}
+	});
 </script>
 
 <svelte:head>
@@ -50,7 +54,7 @@
 		<div class="relative">
 			<Header />
 			<main class="mb-[60px] h-full w-full overflow-x-clip sm:mb-0">
-				<slot />
+				{@render children?.()}
 			</main>
 		</div>
 	</div>

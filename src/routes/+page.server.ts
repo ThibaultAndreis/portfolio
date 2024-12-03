@@ -1,14 +1,13 @@
 import { API_TOKEN, API_URL } from '$env/static/private';
+
 type sectionBackend = {
 	id: number;
-	attributes: {
-		text: string;
-		name: string;
-		createdAt: string;
-		updatedAt: string;
-		publishedAt: string;
-		locale: string;
-	};
+	text: string;
+	name: string;
+	createdAt: string;
+	updatedAt: string;
+	publishedAt: string;
+	locale: string;
 };
 type section = {
 	title: string;
@@ -34,13 +33,14 @@ export async function load({ fetch, parent }) {
 		headers: { Authorization: `bearer ${API_TOKEN}` }
 	});
 	const sectionsJson: { data: sectionBackend[] } = await sectionsFetch.json();
+	console.log(sectionsJson.data);
 
 	const sections: section[] = [];
 
 	sectionsJson.data.forEach((section) => {
 		sections.push({
-			title: section.attributes.name,
-			text: section.attributes.text.replaceAll('.', '.\n'),
+			title: section.name,
+			text: section.text.replaceAll('.', '.\n'),
 			angleA: (Math.round(Math.random()) > 0 ? '' : '-') + (Math.random() * (10 - 2) + 2).toFixed(),
 			angleB: (Math.round(Math.random()) > 0 ? '' : '-') + (Math.random() * (7 - 1) + 1).toFixed(),
 			colors: colors[Math.round(Math.random() * 4)],

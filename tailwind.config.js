@@ -1,3 +1,5 @@
+import * as defaultTheme from 'tailwindcss/defaultTheme';
+
 /** @type {import('tailwindcss').Config} */
 export default {
 	darkMode: 'class',
@@ -5,7 +7,11 @@ export default {
 	theme: {
 		extend: {
 			height: {
-				screen: ['100vh /* fallback for Opera, IE and etc. */', '100dvh']
+				screen: ['100vh', '100dvh']
+			},
+			fontFamily: {
+				sans: ['quicksand', 'quicksand-fallback', ...defaultTheme.fontFamily.sans],
+				serif: ['italiana', 'italiana-fallback', ...defaultTheme.fontFamily.serif]
 			}
 		}
 	}

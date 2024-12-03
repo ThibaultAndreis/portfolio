@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { browser } from '$app/environment';
 	import { applyAction, enhance } from '$app/forms';
 	import { invalidateAll } from '$app/navigation';
@@ -6,7 +8,7 @@
 
 	import { t, locale } from '$lib/i18n/translations';
 
-	export let data;
+	let { data } = $props();
 	const enhanceForm = (theme :string) => () => {
 		themeStore.set(theme);
 		return async ({ result }) => {
@@ -14,7 +16,7 @@
 			await applyAction(result);
 		};
 	};
-	let theme = 'dark';
+	let theme = $state('dark');
 	if (data.theme) {
 		theme = data.theme;
 		if (browser) {
@@ -22,11 +24,13 @@
 		}
 	}
 
-	$: if (browser) {
-		themeStore.subscribe((val) => {
-			theme = val;
-		});
-	}
+	run(() => {
+		if (browser) {
+			themeStore.subscribe((val) => {
+				theme = val;
+			});
+		}
+	});
 </script>
 
 <svelte:head>
