@@ -49,7 +49,7 @@
 
 <div class={theme}>
 	<div
-		class="h-screen w-full overflow-auto bg-orange-100 text-zinc-700 dark:bg-slate-900 dark:text-zinc-200"
+		class="bg-rosePineDawn-base text-rosePineDawn-text dark:bg-rosePineMoon-base dark:text-rosePineMoon-text selection:bg-rosePineDawn-iris selection:dark:bg-rosePineMoon-iris h-screen w-full overflow-auto"
 	>
 		<div class="relative">
 			<Header />

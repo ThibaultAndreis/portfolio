@@ -9,7 +9,7 @@
 	import { t, locale } from '$lib/i18n/translations';
 
 	let { data } = $props();
-	const enhanceForm = (theme :string) => () => {
+	const enhanceForm = (theme: string) => () => {
 		themeStore.set(theme);
 		return async ({ result }) => {
 			await invalidateAll();
@@ -50,7 +50,9 @@
 					<form method="POST" action="?/setTheme" use:enhance={enhanceForm('light')}>
 						<input type="hidden" name="theme" value="light" />
 						<button
-							class="px-2 underline {theme === 'light' ? 'bg-purple-300 text-zinc-700' : ''}"
+							class="px-2 underline {theme === 'light'
+								? 'bg-rosePineDawn-rose dark:accent-rosePineMoon-rose dark:text-rosePineDawn-text text-rosePineMoon-text'
+								: ''}"
 							type="submit"
 						>
 							{$t('settings.Light')}
@@ -61,7 +63,9 @@
 					<form method="POST" action="?/setTheme" use:enhance={enhanceForm('dark')}>
 						<input type="hidden" name="theme" value="dark" />
 						<button
-							class="px-2 underline {theme === 'dark' ? 'bg-purple-300 text-zinc-700' : ''}"
+							class="px-2 underline {theme === 'dark'
+								? 'bg-rosePineDawn-rose dark:accent-rosePineMoon-rose dark:text-rosePineDawn-text text-rosePineMoon-text'
+								: ''}"
 							type="submit"
 						>
 							{$t('settings.Dark')}
@@ -77,7 +81,9 @@
 					<form method="POST" action="?/setLang" use:enhance>
 						<input type="hidden" name="lang" value="fr" />
 						<button
-							class="px-2 underline {$locale === 'fr' ? 'bg-purple-300 text-zinc-700' : ''}"
+							class="px-2 underline {$locale === 'fr'
+								? 'bg-rosePineDawn-rose dark:accent-rosePineMoon-rose dark:text-rosePineDawn-text text-rosePineMoon-text'
+								: ''}"
 							type="submit"
 						>
 							Français
@@ -88,7 +94,9 @@
 					<form method="POST" action="?/setLang" use:enhance>
 						<input type="hidden" name="lang" value="en" />
 						<button
-							class="px-2 underline {$locale === 'en' ? 'bg-purple-300 text-zinc-700' : ''}"
+							class="px-2 underline {$locale === 'en'
+								? 'bg-rosePineDawn-rose dark:accent-rosePineMoon-rose dark:text-rosePineDawn-text text-rosePineMoon-text'
+								: ''}"
 							type="submit"
 						>
 							English
